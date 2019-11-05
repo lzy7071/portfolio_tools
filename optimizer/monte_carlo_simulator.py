@@ -32,7 +32,7 @@ class monte_carlo_simulator:
             
             #printing approx 10x
             if (i%counter_to_print==0):
-                print('Completed Generating '+ str(i) +'Portfolios')
+                print('Completed Generating portfolio {} out of {}'.format(i, self.__numberOfPortfolios))
 
         return portfolios_allocations_df
 

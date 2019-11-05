@@ -49,7 +49,7 @@ def generate_optimum_portfolio():
     cp.plot_portfolios(portfolio_risk_return_ratio_df)
     max_sharpe_portfolio = mc.get_max_sharpe_ratio(portfolio_risk_return_ratio_df)['Portfolio']
     max_shape_ratio_allocations = portfolios_allocations_df[[ 'Symbol', max_sharpe_portfolio]]
-    print(max_shape_ratio_allocations)
+    # print(max_shape_ratio_allocations)
     fr.save_to_file(portfolios_allocations_df, 'MonteCarloPortfolios')
     fr.save_to_file(portfolio_risk_return_ratio_df, 'MonteCarloPortfolioRatios')   
     
