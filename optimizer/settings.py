@@ -14,11 +14,11 @@ class settings:
     CompaniesUrl = 'https://en.wikipedia.org/wiki/NASDAQ-100'
     NumberOfPortfolios = 10  # 0000#0
     API = 'yahoo'
-    YearsToGoBack = 5
+    YearsToGoBack = 3
     RiskFreeRate = 0
     CompanyFetchMode = "PreFixed"  # Auto
     MyCompanies = ['VOO', 'VGK', 'VPL', 'VCIT',
-                        'VWOB', 'SCHP', 'VGLT', 'SCHR', 'SCHO', 'BCI']
+                   'VWOB', 'SCHP', 'VGLT', 'SCHR', 'SCHO', 'PDBC']
     PortfolioOptimisationPath = './docs'
     Path(PortfolioOptimisationPath).mkdir(exist_ok=True)
     PortfolioOptimisationFile = PortfolioOptimisationPath + '/time_series.xlsx'

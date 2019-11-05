@@ -2,6 +2,7 @@ from settings import settings
 from object_factory import object_factory
 from mappers import portfolios_allocation_mapper
 
+
 def generate_optimum_portfolio():
     
     #instantiate the objects with the settings
