@@ -1,6 +1,6 @@
-from .settings import settings
-from .object_factory import object_factory
-from .mappers import portfolios_allocation_mapper
+from settings import settings
+from object_factory import object_factory
+from mappers import portfolios_allocation_mapper
 
 def generate_optimum_portfolio():
     
@@ -10,14 +10,14 @@ def generate_optimum_portfolio():
     cp = obj_factory.get_charts_plotter()
     mcs = obj_factory.get_portfolio_generator()
     fr = obj_factory.get_file_repository()
-    mc = obj_factory.get_metrics_calculator()
-    # price_extractor = obj_factory.get_price_extractor(companies)
+    mc = obj_factory.get_metrics_calculator()    
 
     print('1. Get companies')
     companies = ce.get_companies_list()
 
     print('2. Get company stock prices')
-    
+    price_extractor = obj_factory.get_price_extractor(companies)
+
     end_date = settings.get_end_date()
     start_date = settings.get_start_date(end_date)
     closing_prices = price_extractor.get_prices(settings.PriceEvent, start_date, end_date)

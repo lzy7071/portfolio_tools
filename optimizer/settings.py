@@ -1,6 +1,6 @@
 import numpy as np
 import datetime as dt
-from .calculator import risk_return_calculator
+from calculator import risk_return_calculator
 from pathlib import Path
 
 
@@ -10,14 +10,18 @@ class settings:
     ReturnType = 'Geometric'
     Optimisersettings = {}
     OptimiserType = 'OLS'
-    CompaniesUrl = 'https://en.wikipedia.org/wiki/NASDAQ-100'#'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
-    NumberOfPortfolios = 10#0000#0
+    # 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
+    CompaniesUrl = 'https://en.wikipedia.org/wiki/NASDAQ-100'
+    NumberOfPortfolios = 10  # 0000#0
     API = 'yahoo'
-    YearsToGoBack = 3
+    YearsToGoBack = 5
     RiskFreeRate = 0
-    CompanyFetchMode = "PreFixed" #Auto
-    MyCompanies = ['VOO','VGK','VPL','VCIT','VWOB', 'SCHP', 'VGLT', 'SCHR', 'SCHO', 'BCI']
-    PortfolioOptimisationPath = Path.mkdir(exist_ok=True)
+    CompanyFetchMode = "PreFixed"  # Auto
+    MyCompanies = ['VOO', 'VGK', 'VPL', 'VCIT',
+                        'VWOB', 'SCHP', 'VGLT', 'SCHR', 'SCHO', 'BCI']
+    PortfolioOptimisationPath = './docs'
+    Path(PortfolioOptimisationPath).mkdir(exist_ok=True)
+    PortfolioOptimisationFile = PortfolioOptimisationPath + '/time_series.xlsx'
     RiskFunction = risk_return_calculator.calculate_portfolio_risk
     ReturnFunction = risk_return_calculator.calculate_portfolio_expectedreturns
     AssetsExpectedReturnsFunction = risk_return_calculator.calculate_assets_expectedreturns
