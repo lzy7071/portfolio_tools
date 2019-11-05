@@ -1,6 +1,8 @@
 import numpy as np
 import datetime as dt
-from calculator import risk_return_calculator
+from .calculator import risk_return_calculator
+from pathlib import Path
+
 
 class settings:
 
@@ -14,8 +16,8 @@ class settings:
     YearsToGoBack = 3
     RiskFreeRate = 0
     CompanyFetchMode = "PreFixed" #Auto
-    MyCompanies = ['ZM','UBER','SWI','RNG','CRWD', 'WORK', 'SYMC']
-    PortfolioOptimisationPath = 'C:\Temp\PortfolioOptimisation.xlsx'
+    MyCompanies = ['VOO','VGK','VPL','VCIT','VWOB', 'SCHP', 'VGLT', 'SCHR', 'SCHO', 'BCI']
+    PortfolioOptimisationPath = Path.mkdir(exist_ok=True)
     RiskFunction = risk_return_calculator.calculate_portfolio_risk
     ReturnFunction = risk_return_calculator.calculate_portfolio_expectedreturns
     AssetsExpectedReturnsFunction = risk_return_calculator.calculate_assets_expectedreturns

@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 
+
 class monte_carlo_simulator:
     def __init__(self, mc, risk_function, return_function, numberOfPortfolios):
         self.__numberOfPortfolios = numberOfPortfolios

@@ -6,6 +6,7 @@ import scipy.optimize as solver
 import datetime as dt
 from functools import reduce
 
+
 class price_extractor:
 
     def __init__(self, api, companies):

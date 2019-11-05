@@ -2,6 +2,7 @@ import numpy as np
 from functools import reduce
 import pandas as pd
 
+
 class risk_return_calculator:
     @staticmethod
     def calculate_assets_expectedreturns(returns):        

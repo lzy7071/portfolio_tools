@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 
+
 class chart_plotter:
 
     def __init__(self, mc):

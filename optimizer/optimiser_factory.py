@@ -2,6 +2,7 @@ import numpy as np
 from scipy.optimize import minimize
 import pandas as pd
 
+
 class optimiser:
     Constraints = []
     def __init__(self, mc, risk_function, return_function, targets, portfolio_size):

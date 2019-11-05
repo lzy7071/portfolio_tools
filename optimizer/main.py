@@ -1,6 +1,6 @@
-from settings import settings
-from object_factory import object_factory
-from mappers import portfolios_allocation_mapper
+from .settings import settings
+from .object_factory import object_factory
+from .mappers import portfolios_allocation_mapper
 
 def generate_optimum_portfolio():
     
@@ -11,7 +11,7 @@ def generate_optimum_portfolio():
     mcs = obj_factory.get_portfolio_generator()
     fr = obj_factory.get_file_repository()
     mc = obj_factory.get_metrics_calculator()
-    price_extractor = obj_factory.get_price_extractor(companies)
+    # price_extractor = obj_factory.get_price_extractor(companies)
 
     print('1. Get companies')
     companies = ce.get_companies_list()
