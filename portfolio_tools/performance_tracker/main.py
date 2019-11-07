@@ -9,10 +9,15 @@ def main():
     holdings_count = config_p.PortfolioConfig().holdings_count
     credentials = config_p.PortfolioConfig().credentials
     scope = config_p.PortfolioConfig().scope
+    money_market = config_p.PortfolioConfig().money_market
     manager = track_and_fill.TAF(sheet_name, portfolio_composition=holdings, holdings_count=holdings_count,
                                 credentials=credentials, scope=scope)
-    start_date = dt.datetime.today() - dt.timedelta(days=1)
-    end_date = dt.datetime.today() - dt.timedelta(days=1)
+    start_date = dt.datetime.today()
+    end_date = dt.datetime.today()
     prices = manager.get_closing_prices(start_date, end_date)
     tmp = manager.make_list_for_update(prices)
-    manager.update_price(tmp)
+    _ = manager.update_price('price', tmp, holdings_count, money_market)
+    manager.update_count('count', start_date)
+
+if __name__ == '__main__':
+    main()

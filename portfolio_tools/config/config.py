@@ -12,3 +12,4 @@ class PortfolioConfig:
     scope = [config['Portfolio']['scope']]
     credentials = config['Portfolio']['credentials']
     sheet_name = config['Portfolio']['sheet_name']
+    money_market = float(config['Portfolio']['money_market'])

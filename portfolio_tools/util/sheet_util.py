@@ -14,6 +14,6 @@ class Sheet:
         """
 
         creds = ServiceAccountCredentials.from_json_keyfile_name(credentials, scope)
-        client = gspread.authorize(creds)
-        self.sheet = client.open(title)
+        self.client = gspread.authorize(creds)
+        self.sheet = self.client.open(title)
 

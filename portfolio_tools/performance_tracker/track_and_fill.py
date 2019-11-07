@@ -1,5 +1,7 @@
 from portfolio_tools.util import price_extractor, sheet_util
 import datetime as dt
+from portfolio_tools.config import config as config_p
+import gspread.exceptions
 
 
 class TAF(sheet_util.Sheet):
@@ -50,17 +52,39 @@ class TAF(sheet_util.Sheet):
             result.append(value)
         return result
 
-    def update_price(self, _lists, holdings_count, money_market):
+    def update_price(self, worksheet, _lists, holdings_count, money_market):
         """update price sheet
         
         Args:
-            _lists (:obj:`list`): lists with date and prices
+            worksheet(:obj:`str`): name of worksheet
+            _lists (:obj:`list` of :obj:`list`): lists with date and prices
             money_market (:obj:`flat`): money market holding
             holdings_count (:obj:`list`) number of holding for each stock
+
+        Returns:
+            (:obj:`list`): final rows 
         """
+        result = []
         for _list in _lists:
-            value = sum(a * b for a, b in zip(_list[:-1], holdings_count[:-1]))
+            value = sum(a * b for a, b in zip(_list[1:], holdings_count))
             _list.append(money_market)
             total_value = value + money_market
             _list.append(total_value)
-            self.sheet.worksheet('price').append_row(_list)
+            result.append(_list)
+            self.sheet.worksheet(worksheet).append_row(_list)
+        return result
+
+    def update_count(self, worksheet, date):
+        """update count worksheet
+        
+        Args:
+            worksheet(:obj:`str`): name of worksheet
+            date (:obj:`str`): date
+        """
+        count = config_p.PortfolioConfig().holdings_count
+        count.insert(0, str(date))
+        try:
+            self.sheet.worksheet(worksheet).append_row(count)
+        except gspread.exceptions.WorksheetNotFound:
+            self.sheet.add_worksheet(worksheet, 100, 100)
+            self.sheet.worksheet(worksheet).append_row(count)
