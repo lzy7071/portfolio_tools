@@ -1,6 +1,6 @@
-from settings import settings
-from object_factory import object_factory
-from mappers import portfolios_allocation_mapper
+from portfolio_tools.optimizer.settings import settings
+from portfolio_tools.optimizer.object_factory import object_factory
+from portfolio_tools.optimizer.mappers import portfolios_allocation_mapper
 
 
 def generate_optimum_portfolio():
