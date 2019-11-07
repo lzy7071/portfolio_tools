@@ -3,8 +3,8 @@ pandas
 pandas_datareader
 matplotlib
 scipy
-xlsxwriter
 pytest
-google-api-python-client
-google-auth-httplib2
-google-auth-oauthlib
+google_api_python_client
+google_auth_httplib2
+google_auth_oauthlib
+pkg_utils

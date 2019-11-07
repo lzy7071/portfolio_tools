@@ -4,3 +4,5 @@ __pycache__/
 docs/
 *.env
 credentials/
+token.pickle
+*.egg-info
