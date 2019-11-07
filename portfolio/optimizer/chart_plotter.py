@@ -43,11 +43,9 @@ class chart_plotter:
         self.plot_single_point(x,y,'Min Risk: '+name, 'red')
 
         equal_allocations_portfolio = df.loc[df['Portfolio'] == 'EqualAllocationPortfolio']
-        x = equal_allocations_portfolio['Risk'].Risk
-        y = equal_allocations_portfolio['Return']
-        name = equal_allocations_portfolio['Portfolio']
-        print(equal_allocations_portfolio)
-        print('x: begin {} end, y: begin {} end, name: begin {} end'.format(x, y, name))
+        x = equal_allocations_portfolio['Risk'].iloc[0]
+        y = equal_allocations_portfolio['Return'].iloc[0]
+        name = equal_allocations_portfolio['Portfolio'].iloc[0]
         self.plot_single_point(x,y,'Portfolio: ' + name, 'black')
     
 

@@ -33,8 +33,8 @@ class metrics_calculator:
 
     @staticmethod
     def get_max_sharpe_ratio(df):
-        return df.ix[df['SharpeRatio'].astype(float).idxmax()]
+        return df.iloc[df['SharpeRatio'].astype(float).idxmax()]
 
     @staticmethod
     def get_min_risk(df):
-        return df.ix[df['Risk'].astype(float).idxmin()]
+        return df.iloc[df['Risk'].astype(float).idxmin()]

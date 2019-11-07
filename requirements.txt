@@ -4,3 +4,7 @@ pandas_datareader
 matplotlib
 scipy
 xlsxwriter
+pytest
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
