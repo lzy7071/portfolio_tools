@@ -66,7 +66,7 @@ class TAF(sheet_util.Sheet):
         """
         result = []
         for _list in _lists:
-            value = sum(a * b for a, b in zip(_list[1:], holdings_count))
+            value = sum(a * b for a, b in zip(_list[1:-1], holdings_count))
             _list.append(money_market)
             total_value = value + money_market
             _list.append(total_value)

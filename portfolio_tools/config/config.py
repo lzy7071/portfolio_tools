@@ -9,7 +9,7 @@ class PortfolioConfig:
     holdings_test = config['Portfolio']['holdings_test'].split(',')
     holdings = config['Portfolio']['holdings'].split(',')
     holdings_count = json.loads(config['Portfolio']['holdings_count'])
-    scope = [config['Portfolio']['scope']]
+    scope = config['Portfolio']['scope'].split(',')
     credentials = config['Portfolio']['credentials']
     sheet_name = config['Portfolio']['sheet_name']
     money_market = float(config['Portfolio']['money_market'])

@@ -12,16 +12,15 @@ class settings:
     OptimiserType = 'OLS'
     # 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
     CompaniesUrl = 'https://en.wikipedia.org/wiki/NASDAQ-100'
-    NumberOfPortfolios = 10  # 0000#0
+    NumberOfPortfolios = 10000 # 0000#0
     API = 'yahoo'
-    YearsToGoBack = 3
+    YearsToGoBack = 5
     RiskFreeRate = 0
     CompanyFetchMode = "PreFixed"  # Auto
-    MyCompanies = ['VOO', 'VGK', 'VPL', 'VCIT',
-                   'VWOB', 'SCHP', 'VGLT', 'SCHR', 'SCHO', 'PDBC']
+    MyCompanies = ['TLT','VTI','IEF']
     PortfolioOptimisationPath = './docs'
     Path(PortfolioOptimisationPath).mkdir(exist_ok=True)
-    PortfolioOptimisationFile = PortfolioOptimisationPath + '/time_series.xlsx'
+    PortfolioOptimisationFile = PortfolioOptimisationPath + '/final_results.xlsx'
     RiskFunction = risk_return_calculator.calculate_portfolio_risk
     ReturnFunction = risk_return_calculator.calculate_portfolio_expectedreturns
     AssetsExpectedReturnsFunction = risk_return_calculator.calculate_assets_expectedreturns
