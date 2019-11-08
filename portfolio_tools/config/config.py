@@ -13,3 +13,11 @@ class PortfolioConfig:
     credentials = config['Portfolio']['credentials']
     sheet_name = config['Portfolio']['sheet_name']
     money_market = float(config['Portfolio']['money_market'])
+
+
+class BenchmarkConfig(PortfolioConfig):
+
+    config = PortfolioConfig.config
+    test_benchmark = config['Portfolio-benchmark']['holdings_test']
+    holdings_benchmark = config['Portfolio-benchmark']['holdings']
+    holdings_benchmark_count = config['Portfolio-benchmark']['holdings_count']
