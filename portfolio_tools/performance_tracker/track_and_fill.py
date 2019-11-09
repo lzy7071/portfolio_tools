@@ -88,3 +88,22 @@ class TAF(sheet_util.Sheet):
         except gspread.exceptions.WorksheetNotFound:
             self.sheet.add_worksheet(worksheet, 100, 100)
             self.sheet.worksheet(worksheet).append_row(count)
+
+    def update_benchmark(self, worksheet, _lists, holdings_count, money_market):
+        """update benchmark asset total value
+        
+        Args:
+            worksheet(:obj:`str`): name of worksheet
+            _lists (:obj:`list` of :obj:`list`): lists with date and prices
+            money_market (:obj:`flat`): money market holding
+            holdings_count (:obj:`list`) number of holding for each stock
+
+        Returns:
+            (:obj:`list`): final rows 
+        """
+        for _list in _lists:
+            value = sum(a * b for a, b in zip(_list[1:], holdings_count))
+            _list.append(money_market)
+            total_value = value + money_market
+            _list.append(total_value)
+            self.sheet.worksheet(worksheet).append_row(_list)

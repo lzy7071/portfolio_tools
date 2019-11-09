@@ -2,6 +2,7 @@ import numpy as np
 import datetime as dt
 from portfolio_tools.optimizer.calculator import risk_return_calculator
 from pathlib import Path
+from portfolio_tools.config import config as config_p
 
 
 class settings:
@@ -17,7 +18,7 @@ class settings:
     YearsToGoBack = 5
     RiskFreeRate = 0
     CompanyFetchMode = "PreFixed"  # Auto
-    MyCompanies = ['TLT','VTI','IEF']
+    MyCompanies = config_p.BootstrapConfig().holdings_bootstrap
     PortfolioOptimisationPath = './docs'
     Path(PortfolioOptimisationPath).mkdir(exist_ok=True)
     PortfolioOptimisationFile = PortfolioOptimisationPath + '/final_results.xlsx'

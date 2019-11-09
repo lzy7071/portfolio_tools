@@ -16,8 +16,41 @@ def main():
     end_date = dt.datetime.today()
     prices = manager.get_closing_prices(start_date, end_date)
     tmp = manager.make_list_for_update(prices)
-    # _ = manager.update_price('price', tmp, holdings_count, money_market)
+    _ = manager.update_price('price', tmp, holdings_count, money_market)
     manager.update_count('count', start_date)
+    
+def benchmark():
+    sheet_name = config_p.BenchmarkConfig().sheet_name
+    holdings = config_p.BenchmarkConfig().holdings_benchmark
+    holdings_count = config_p.BenchmarkConfig().holdings_benchmark_count
+    credentials = config_p.BenchmarkConfig().credentials
+    scope = config_p.BenchmarkConfig().scope
+    money_market = config_p.BenchmarkConfig().benchmark_money_market
+    start_date = dt.datetime(2019, 11, 4)
+    end_date = dt.datetime(2019, 11, 8)
+    manager = track_and_fill.TAF(sheet_name, portfolio_composition=holdings, holdings_count=holdings_count,
+                                credentials=credentials, scope=scope)
+    prices = manager.get_closing_prices(start_date, end_date)
+    tmp = manager.make_list_for_update(prices)
+    manager.update_benchmark('benchmark', tmp, holdings_count, money_market)
+
+def ideas():
+    sheet_name = config_p.BootstrapConfig().sheet_id
+    holdings = config_p.BootstrapConfig().holdings_bootstrap
+    holdings_count = config_p.BootstrapConfig().holdings_count_bootstrap
+    credentials = config_p.BenchmarkConfig().credentials
+    scope = config_p.BenchmarkConfig().scope
+    money_market = config_p.BootstrapConfig().bootstrap_money_market
+    start_date = dt.datetime(2014, 11, 8)
+    end_date = dt.datetime(2019, 11, 8)
+    manager = track_and_fill.TAF(sheet_name, portfolio_composition=holdings, holdings_count=holdings_count,
+                                credentials=credentials, scope=scope)
+    prices = manager.get_closing_prices(start_date, end_date)
+    tmp = manager.make_list_for_update(prices)
+    manager.update_benchmark('benchmark', tmp, holdings_count, money_market)
+
 
 if __name__ == '__main__':
-    main()
+    # main()
+    # benchmark()
+    ideas()

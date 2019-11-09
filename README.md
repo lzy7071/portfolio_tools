@@ -15,6 +15,6 @@
     holdings_count = [105,175]  
     scope = https://www.googleapis.com/auth/drive  
     credentials = ./credentials/project_api.json  
-    sheet_name = sheet name  
+    sheet_name = google spreadsheet ID
     money_market = 12313         
 
