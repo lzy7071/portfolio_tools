@@ -49,8 +49,20 @@ def ideas():
     tmp = manager.make_list_for_update(prices)
     manager.update_benchmark('benchmark', tmp, holdings_count, money_market)
 
+def fill_as_dataframe():
+    sheet_name = config_p.TestConfig().sheet_id
+    holdings = config_p.TestConfig().holdings_test_0
+    holdings_count = config_p.TestConfig().holdings_count_test_0
+    money_market = config_p.TestConfig().test_0_money_market 
+    start_date = dt.datetime(2014, 11, 8)
+    end_date = dt.datetime(2019, 11, 8)
+    manager = track_and_fill.SheetBatch(sheet_name, portfolio_composition=holdings, holdings_count=holdings_count)
+    prices = manager.get_closing_prices(start_date, end_date)
+    manager.set_empty_wksheet('test_0', prices)
+
 
 if __name__ == '__main__':
     # main()
     # benchmark()
-    ideas()
+    # ideas()
+    fill_as_dataframe()

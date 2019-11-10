@@ -1,6 +1,7 @@
 from portfolio_tools.util import price_extractor, sheet_util
 import datetime as dt
 from portfolio_tools.config import config as config_p
+from portfolio_tools.config import auth_pygsheet
 import gspread.exceptions
 
 
@@ -31,8 +32,6 @@ class TAF(sheet_util.Sheet):
         Returns:
             (:obj:`DataFrame`): prices
         """
-        start_date = start_date
-        end_date = end_date
         return price_extractor.PriceExtractor(self.portfolio_composition).get_prices(start_date, end_date)
 
     def make_list_for_update(self, df):
@@ -107,3 +106,36 @@ class TAF(sheet_util.Sheet):
             total_value = value + money_market
             _list.append(total_value)
             self.sheet.worksheet(worksheet).append_row(_list)
+
+
+class SheetBatch(auth_pygsheet.AuthPygsheets):
+
+    def __init__(self, spreadsheet, portfolio_composition=None, holdings_count=None):
+        self.spreadsheet = spreadsheet
+        self.portfolio_composition = portfolio_composition
+        self.holdings_count = holdings_count
+        super().__init__()
+        self.sh = self.gc.open_by_key(spreadsheet)
+
+    def get_closing_prices(self, start_date, end_date):
+        """get closing prices for date range 
+        
+        Args:
+            start_date (:obj:`str`): starting date
+            end_date (:obj:`str`): end date
+
+        Returns:
+            (:obj:`DataFrame`): prices
+        """
+        return price_extractor.PriceExtractor(self.portfolio_composition).get_prices(start_date, end_date)
+
+    def set_empty_wksheet(self, worksheet, df):
+        """name of worksheet to be set
+        
+        Args:
+            worksheet (:obj:`str`): name of worksheet
+            df (:obj:`DataFrame`): dataframe without column title
+            dates (:obj:`list`): list of dates
+        """
+        wks = self.sh.worksheet_by_title(worksheet)
+        wks.set_dataframe(df, (1,1), copy_index=True)

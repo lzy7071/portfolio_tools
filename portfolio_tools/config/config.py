@@ -31,3 +31,12 @@ class BootstrapConfig(BenchmarkConfig):
     holdings_count_bootstrap = json.loads(config['Portfolio-bootstrap']['holdings_count'])
     sheet_id = config['Portfolio-bootstrap']['sheet_id']
     bootstrap_money_market = float(config['Portfolio-bootstrap']['money_market'])
+
+
+class TestConfig(BenchmarkConfig):
+    
+    config = BenchmarkConfig.config
+    holdings_test_0 = config['Portfolio-test-0']['holdings'].split(',')
+    holdings_count_test_0 = json.loads(config['Portfolio-test-0']['holdings_count'])
+    sheet_id = config['Portfolio-test-0']['sheet_id']
+    test_0_money_market = float(config['Portfolio-test-0']['money_market'])

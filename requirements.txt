@@ -10,3 +10,4 @@ google_auth_oauthlib
 pkg_utils
 gspread
 oauth2client
+pygsheets
