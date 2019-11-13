@@ -5,7 +5,7 @@ import json
 class PortfolioConfig:
 
     config = ConfigParser()
-    config.read('./credentials/sheets.ini')
+    config.read('~/.project_configs/portfolio_tools_credentials/sheets.ini')
     holdings_test = config['Portfolio']['holdings_test'].split(',')
     holdings = config['Portfolio']['holdings'].split(',')
     holdings_count = json.loads(config['Portfolio']['holdings_count'])

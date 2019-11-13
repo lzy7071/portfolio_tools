@@ -7,7 +7,7 @@ class TestSheeUtil(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         scope = ['https://www.googleapis.com/auth/drive']
-        credentials = './credentials/project_api.json'
+        credentials = '~/.project_configs/portfolio_tools_credentials/project_api.json'
         sheet_name = 'Copy of All weather portfolio (liquid asset)'
         cls.src = sheet_util.Sheet(sheet_name, scope=scope, credentials=credentials)
 
