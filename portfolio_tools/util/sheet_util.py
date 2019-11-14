@@ -1,5 +1,6 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from pathlib import Path
 
 
 class Sheet:
@@ -12,6 +13,7 @@ class Sheet:
             scope (:obj:`list` of `str`, optional): auth scope. Defaults to None.
             credentials (:obj:`list`, optional): location of credentials file. Defaults to None.
         """
+        credentials = str(Path(credentials).expanduser())
         creds = ServiceAccountCredentials.from_json_keyfile_name(credentials, scope)
         self.client = gspread.authorize(creds)
         self.sheet = self.client.open_by_key(title)

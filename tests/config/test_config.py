@@ -18,5 +18,5 @@ class TestConfig(unittest.TestCase):
     def test_benchmark(self):
         b_test = self.src_benchmark.test_benchmark
         h_test = self.src_benchmark.holdings_test
-        self.assertEqual(b_test, 'benchmark')
+        self.assertEqual(b_test, ['benchmark'])
         self.assertEqual(h_test, ['abc', 'def'])

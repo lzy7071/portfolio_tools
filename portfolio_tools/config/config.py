@@ -1,11 +1,13 @@
 from configparser import ConfigParser
 import json
+from pathlib import Path
 
 
 class PortfolioConfig:
 
     config = ConfigParser()
-    config.read('~/.project_configs/portfolio_tools_credentials/sheets.ini')
+    config_path = str(Path('~/.project_configs/portfolio_tools_credentials/sheets.ini').expanduser())
+    config.read(config_path)
     holdings_test = config['Portfolio']['holdings_test'].split(',')
     holdings = config['Portfolio']['holdings'].split(',')
     holdings_count = json.loads(config['Portfolio']['holdings_count'])

@@ -8,7 +8,7 @@ class TestTAF(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         scope = ['https://www.googleapis.com/auth/drive']
-        credentials = './credentials/project_api.json'
+        credentials = '~/.project_configs/portfolio_tools_credentials/project_api.json'
         sheet_name = 'Copy of All weather portfolio (liquid asset)'
         portfolio_composition = ['AAPL', 'GOOG', '^GSPC']
         cls.src = track_and_fill.TAF(sheet_name, portfolio_composition=portfolio_composition, holdings_count=[1,1],
