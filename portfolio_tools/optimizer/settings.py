@@ -13,7 +13,7 @@ class settings:
     OptimiserType = 'OLS'
     # 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
     CompaniesUrl = 'https://en.wikipedia.org/wiki/NASDAQ-100'
-    NumberOfPortfolios = 10000 # 0000#0
+    NumberOfPortfolios = 16000 # 0000#0
     API = 'yahoo'
     YearsToGoBack = 5
     RiskFreeRate = 0
