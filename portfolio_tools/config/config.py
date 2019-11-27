@@ -36,9 +36,10 @@ class BootstrapConfig(BenchmarkConfig):
 
 
 class TestConfig(BenchmarkConfig):
-    
-    config = BenchmarkConfig.config
-    holdings_test_0 = config['Portfolio-test-0']['holdings'].split(',')
-    holdings_count_test_0 = json.loads(config['Portfolio-test-0']['holdings_count'])
-    sheet_id = config['Portfolio-test-0']['sheet_id']
-    test_0_money_market = float(config['Portfolio-test-0']['money_market'])
+
+    def __init__(self, profile='Portfolio-test-0'):    
+        config = BenchmarkConfig.config
+        self.holdings_test_0 = config[profile]['holdings'].split(',')
+        # self.holdings_count_test_0 = json.loads(config[profile]['holdings_count'])
+        self.sheet_id = config[profile]['sheet_id']
+        self.test_0_money_market = float(config[profile]['money_market'])
