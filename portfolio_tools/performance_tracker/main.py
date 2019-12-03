@@ -12,8 +12,8 @@ def main():
     money_market = config_p.PortfolioConfig().money_market
     manager = track_and_fill.TAF(sheet_name, portfolio_composition=holdings, holdings_count=holdings_count,
                                 credentials=credentials, scope=scope)
-    start_date = dt.datetime(2019, 11, 26)
-    end_date = dt.datetime(2019, 11, 26)
+    start_date = dt.today()
+    end_date = dt.today()
     prices = manager.get_closing_prices(start_date, end_date)
     tmp = manager.make_list_for_update(prices)
     _ = manager.update_price('price', tmp, holdings_count, money_market)
@@ -26,8 +26,8 @@ def benchmark():
     credentials = config_p.BenchmarkConfig().credentials
     scope = config_p.BenchmarkConfig().scope
     money_market = config_p.BenchmarkConfig().benchmark_money_market
-    start_date = dt.datetime(2019, 11, 26)
-    end_date = dt.datetime(2019, 11, 26)
+    start_date = dt.today()
+    end_date = dt.today()
     manager = track_and_fill.TAF(sheet_name, portfolio_composition=holdings, holdings_count=holdings_count,
                                 credentials=credentials, scope=scope)
     prices = manager.get_closing_prices(start_date, end_date)
