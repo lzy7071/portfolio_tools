@@ -12,8 +12,8 @@ def main():
     money_market = config_p.PortfolioConfig().money_market
     manager = track_and_fill.TAF(sheet_name, portfolio_composition=holdings, holdings_count=holdings_count,
                                 credentials=credentials, scope=scope)
-    start_date = dt.datetime(2019, 11, 26)
-    end_date = dt.datetime(2019, 11, 26)
+    start_date = dt.datetime.today()
+    end_date = dt.datetime.today()
     prices = manager.get_closing_prices(start_date, end_date)
     tmp = manager.make_list_for_update(prices)
     _ = manager.update_price('price', tmp, holdings_count, money_market)
@@ -26,8 +26,8 @@ def benchmark():
     credentials = config_p.BenchmarkConfig().credentials
     scope = config_p.BenchmarkConfig().scope
     money_market = config_p.BenchmarkConfig().benchmark_money_market
-    start_date = dt.datetime(2019, 11, 26)
-    end_date = dt.datetime(2019, 11, 26)
+    start_date = dt.datetime.today()
+    end_date = dt.datetime.today()
     manager = track_and_fill.TAF(sheet_name, portfolio_composition=holdings, holdings_count=holdings_count,
                                 credentials=credentials, scope=scope)
     prices = manager.get_closing_prices(start_date, end_date)
@@ -50,12 +50,12 @@ def ideas():
     manager.update_benchmark('benchmark', tmp, holdings_count, money_market)
 
 def fill_as_dataframe():
-    sheet_name = config_p.TestConfig(profile='Portfolio-test-1').sheet_id
-    holdings = config_p.TestConfig(profile='Portfolio-test-1').holdings_test_0
+    sheet_name = config_p.TestConfig(profile='Portfolio-test-2').sheet_id
+    holdings = config_p.TestConfig(profile='Portfolio-test-2').holdings_test_0
     # holdings_count = config_p.TestConfig(profile='Portfolio-test-1').holdings_count_test_0
-    money_market = config_p.TestConfig(profile='Portfolio-test-1').test_0_money_market 
-    start_date = dt.datetime(2014, 11, 8)
-    end_date = dt.datetime(2019, 11, 8)
+    money_market = config_p.TestConfig(profile='Portfolio-test-2').test_0_money_market 
+    start_date = dt.datetime(2018, 11, 8)
+    end_date = dt.datetime(2019, 12, 5)
     manager = track_and_fill.SheetBatch(sheet_name, portfolio_composition=holdings)
     prices = manager.get_closing_prices(start_date, end_date)
     daily_return = prices.pct_change()
