@@ -47,7 +47,7 @@ class TAF(sheet_util.Sheet):
         values = df.values.tolist()
         dates = df.index.values
         for date, value in zip(dates, values):
-            value.insert(0, str(date))
+            value.insert(0, str(date)[:10])
             result.append(value)
         return result
 
