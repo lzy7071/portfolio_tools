@@ -16,6 +16,7 @@ def main():
     end_date = dt.date.today()
     prices = manager.get_closing_prices(start_date, end_date)
     tmp = manager.make_list_for_update(prices)
+    print(tmp)
     _ = manager.update_price('price', tmp, holdings_count, money_market)
     manager.update_count('count', start_date)
     
