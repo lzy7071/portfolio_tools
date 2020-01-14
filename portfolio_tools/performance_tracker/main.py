@@ -15,8 +15,8 @@ def main():
     start_date = dt.date.today()
     end_date = dt.date.today()
     prices = manager.get_closing_prices(start_date, end_date)
+    prices.fillna(0, inplace=True)
     tmp = manager.make_list_for_update(prices)
-    print(tmp)
     _ = manager.update_price('price', tmp, holdings_count, money_market)
     manager.update_count('count', start_date)
     
@@ -55,7 +55,7 @@ def fill_as_dataframe():
     holdings = config_p.TestConfig(profile='Portfolio-test-2').holdings_test_0
     # holdings_count = config_p.TestConfig(profile='Portfolio-test-1').holdings_count_test_0
     money_market = config_p.TestConfig(profile='Portfolio-test-2').test_0_money_market 
-    start_date = dt.datetime(2018, 11, 8)
+    start_date = dt.datetime(2014, 11, 8)
     end_date = dt.datetime(2019, 12, 5)
     manager = track_and_fill.SheetBatch(sheet_name, portfolio_composition=holdings)
     prices = manager.get_closing_prices(start_date, end_date)
@@ -70,6 +70,6 @@ def fill_as_dataframe():
 
 if __name__ == '__main__':
     main()
-    benchmark()
+    # benchmark()
     # ideas()
     # fill_as_dataframe()

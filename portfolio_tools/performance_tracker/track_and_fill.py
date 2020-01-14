@@ -1,5 +1,6 @@
 from portfolio_tools.util import price_extractor, sheet_util
 import datetime as dt
+import numpy as np
 from portfolio_tools.config import config as config_p
 from portfolio_tools.config import auth_pygsheet
 import gspread.exceptions

@@ -43,3 +43,31 @@ class TestConfig(BenchmarkConfig):
         # self.holdings_count_test_0 = json.loads(config[profile]['holdings_count'])
         self.sheet_id = config[profile]['sheet_id']
         self.test_0_money_market = float(config[profile]['money_market'])
+
+
+class WifeRothIRA:
+
+    def __init__(self, porfolio='~/.project_configs/portfolio_tools_credentials/wife_roth_ira.json'):
+        self.portfolio_file = str(Path('~/.project_configs/portfolio_tools_credentials/wife_roth_ira.json').expanduser())
+
+    def load_portfolio(self):
+        with open(self.portfolio_file) as f:
+            portfolio = json.load(f)
+        return portfolio
+
+    def process_portfolio(self, _dict):
+        """Process key/val pairs in portfolio file
+        
+        Args:
+            _dict (:obj:`dict`): Portfolio loaded from json.
+
+        Return:
+            (:obj:`list` of :obj:`dict`): list of securities and dates with which to get pricing info. 
+        """
+        result = []
+        for key, vals in _dict:
+            for val in vals:
+                if val.get('Closing Price') is not None:
+                    continue
+                else:
+                    {}
