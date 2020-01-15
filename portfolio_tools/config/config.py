@@ -1,5 +1,6 @@
 from configparser import ConfigParser
 import json
+from datetime import datetime as dt
 from pathlib import Path
 
 
@@ -64,10 +65,23 @@ class WifeRothIRA:
         Return:
             (:obj:`list` of :obj:`dict`): list of securities and dates with which to get pricing info. 
         """
-        result = []
-        for key, vals in _dict:
-            for val in vals:
+        sd = {'earliest_date': dt(2100, 1, 1), 'latest_date': dt(1900, 1, 1), 'equities': {}}
+        for key in _dict:
+            if key == 'test':
+                continue
+            for i, val in enumerate(_dict[key]):
                 if val.get('Closing Price') is not None:
                     continue
                 else:
-                    {}
+                    date = dt.strptime(val.get('Date'), '%Y-%m-%d')
+                    if date < sd['earliest_date']:
+                        sd['earliest_date'] = date
+                    elif date > sd['latest_date']:
+                        sd['latest_date'] = date
+                    if sd.get(key) is None:
+                        sd['equities'][key] = [i]
+                    else:
+                        sd['equities'][key] += [i]
+        return sd
+
+        
