@@ -1,6 +1,7 @@
 from configparser import ConfigParser
 import json
 from datetime import datetime as dt
+from datetime import date as dto
 from pathlib import Path
 
 
@@ -65,23 +66,42 @@ class WifeRothIRA:
         Return:
             (:obj:`list` of :obj:`dict`): list of securities and dates with which to get pricing info. 
         """
-        sd = {'earliest_date': dt(2100, 1, 1), 'latest_date': dt(1900, 1, 1), 'equities': {}}
+        sd = {'earliest_date': dto(2100, 1, 1), 'latest_date': dto.today(), 'equities': {},
+              'companies': []}
         for key in _dict:
             if key == 'test':
                 continue
             for i, val in enumerate(_dict[key]):
-                if val.get('Closing Price') is not None:
-                    continue
+                date = dt.strptime(val.get('Date'), '%Y-%m-%d').date()
+                sd['companies'].append(key)
+                if date < sd['earliest_date']:
+                    sd['earliest_date'] = date
+
+                if sd['equities'].get(key) is None:
+                    sd['equities'][key] = [i]
                 else:
-                    date = dt.strptime(val.get('Date'), '%Y-%m-%d')
-                    if date < sd['earliest_date']:
-                        sd['earliest_date'] = date
-                    elif date > sd['latest_date']:
-                        sd['latest_date'] = date
-                    if sd.get(key) is None:
-                        sd['equities'][key] = [i]
-                    else:
-                        sd['equities'][key] += [i]
+                    sd['equities'][key] += [i]
         return sd
 
+    def calculate_average_price(self, _dict):
+        """Calculate dollar cost average per security.
         
+        Args:
+            _dict (:obj:`dict`): Portfolio loaded from json.
+
+        Return:
+            (:obj:`dict`): Securities and their corresponding average purchase price.
+        """
+        for key in _dict:
+            if key == 'test':
+                continue
+            total_count = 0
+            total_cost = 0
+            for val in _dict[key]['Lots']:  #{'date': ... 'shares': ... 'executed price'}
+                total_count += val['Shares']
+                total_cost += val['Executed Price'] * val['Shares']
+            avg_cost = total_cost / total_count
+            _dict[key]['Total Holdings'] = total_count
+            _dict[key]['Total Cost'] = total_cost
+            _dict[key]['Average Cost'] = avg_cost
+        return _dict

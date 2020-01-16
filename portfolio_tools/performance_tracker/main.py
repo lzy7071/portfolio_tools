@@ -1,4 +1,5 @@
 from portfolio_tools.performance_tracker import track_and_fill
+from portfolio_tools.util import price_extractor
 import datetime as dt
 from portfolio_tools.config import config as config_p
 
@@ -67,9 +68,17 @@ def fill_as_dataframe():
     manager.set_empty_wksheet('covariance', cov)
     manager.set_empty_wksheet('daily_returns', daily_return)
 
+def track_wife_ira():
+    manager = config_p.WifeRothIRA()
+    portfolio = manager.load_portfolio()
+    sd = manager.process_portfolio(portfolio)
+    prices = price_extractor.PriceExtractor(sd['companies']).get_prices(sd['earliest_date'], sd['latest_date'])
+    print(prices)
+
 
 if __name__ == '__main__':
     main()
     # benchmark()
     # ideas()
     # fill_as_dataframe()
+    # track_wife_ira()
