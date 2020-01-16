@@ -25,14 +25,3 @@ class TestConfig(unittest.TestCase):
     def test_wife_roth(self):
         test = self.src_wife.load_portfolio()
         self.assertEqual(test['test']['Lots'][0]["Executed Price"], 91.645)
-
-    @unittest.skip('passed')
-    def test_process_portfolio_wife(self):
-        tmp = self.src_wife.load_portfolio()
-        result = self.src_wife.process_portfolio(tmp)
-        print(result)
-
-    def test_calculate_average_price_wife(self):
-        tmp = self.src_wife.load_portfolio()
-        result = self.src_wife.calculate_average_price(tmp)
-        print(result)
