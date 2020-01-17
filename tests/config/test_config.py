@@ -23,5 +23,5 @@ class TestConfig(unittest.TestCase):
         self.assertEqual(h_test, ['abc', 'def'])
 
     def test_wife_roth(self):
-        test = self.src_wife.load_portfolio()
+        test = self.src_wife.portfolio
         self.assertEqual(test['test']['Lots'][0]["Executed Price"], 91.645)
