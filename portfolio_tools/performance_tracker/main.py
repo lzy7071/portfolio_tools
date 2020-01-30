@@ -70,16 +70,17 @@ def fill_as_dataframe():
 
 def track_wife_ira():
     portfolio = config_p.WifeRothIRA().portfolio
-    manager = process_json_portfolio.ProcessJsonPortfolio()
-    new_portfolio, securities, count = manager.calculate_average_price(portfolio)
-    earliest_date = manager.get_earliest_date(portfolio)
+    json_manager = process_json_portfolio.ProcessJsonPortfolio()
+    new_portfolio, securities, count = json_manager.calculate_average_price(portfolio)
+    earliest_date = json_manager.get_earliest_date(portfolio)
     prices = price_extractor.PriceExtractor(securities).get_prices(earliest_date, dt.date.today())
     print(prices)
+    print(prices.multiply(count, axis=1))
 
 
 if __name__ == '__main__':
-    # main()
-    # benchmark()
+    main()
+    benchmark()
     # ideas()
     # fill_as_dataframe()
-    track_wife_ira()
+    # track_wife_ira()
