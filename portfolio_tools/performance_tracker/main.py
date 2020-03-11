@@ -80,7 +80,7 @@ def track_wife_ira():
 
 if __name__ == '__main__':
     main()
-    # benchmark()
+    benchmark()
     # ideas()
     # fill_as_dataframe()
     # track_wife_ira()
